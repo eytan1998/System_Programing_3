@@ -134,4 +134,3 @@ void print_similar_words(char *str) {
     }
 }
 
-
