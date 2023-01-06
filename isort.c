@@ -1,8 +1,5 @@
 
-
 #include <stdio.h>
-#include <malloc.h>
-#include <string.h>
 
 #define SIZE 50
 
@@ -12,15 +9,17 @@ void insert_sort(int *arr, int len);
 
 int main() {
     int arr[SIZE];
+    //read array
     for (int i = 0; i < SIZE; ++i) {
         scanf(" %d", (arr + i));
     }
+    //sort
     insert_sort(arr, SIZE);
-    printf("%d", *arr);
-    for (int i = 1; i < SIZE; ++i) {
-        printf(",%d", *(arr + i));
+    //print sorted array
+    for (int i = 0; i < SIZE - 1; ++i) {
+        printf("%d,", *(arr + i));
     }
-    printf("\n");
+    printf("%d\n", *(arr + SIZE - 1));
     return 0;
 }
 
@@ -32,15 +31,16 @@ void shift_element(int *arr, int i) {
 }
 
 void insert_sort(int *arr, int len) {
-    int key, j;
-    for (int i = 1; i < len; i++) {
-        key = *(arr + i);
-        j = i - 1;
+    int key, i, j;
+    int counter = 0;
 
-        int counter = 0;
-        while (j >= 0 && *(arr + j) > key) {
+    for (i = 1; i < len; i++) {
+        key = *(arr + i);
+
+        counter = 0;
+        //find the index to insert
+        for (j = i - 1; j >= 0 && *(arr + j) > key; j--) {
             counter++;
-            j = j - 1;
         }
         shift_element(arr + j, counter);
         *(arr + j + 1) = key;

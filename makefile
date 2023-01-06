@@ -3,6 +3,7 @@
 all: isort txtfind
 clean:
 	rm -f txtfind isort *.o *.txts
+
 txtfind: txtfind.c
 	gcc -Wall -g txtfind.c -o $@
 
